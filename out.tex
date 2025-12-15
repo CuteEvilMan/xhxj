@@ -1,0 +1,74 @@
+\documentclass[8pt, a4paper]{extarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xeCJK}
+
+% --- 页面设置 ---
+% 极小边距，避免内容被裁切
+\geometry{left=2mm, right=2mm, top=2mm, bottom=2mm}
+
+% --- 格式调整 ---
+% 减少公式上下的空白
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+\allowdisplaybreaks
+
+% 调整列表环境，去除垂直间距
+\setlist{nosep, leftmargin=*}
+
+% 调整标题间距
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\hrule]
+\titlespacing*{\section}{0pt}{5pt}{2pt}
+\titleformat{\subsection}{\bfseries}{}{0em}{}
+\titlespacing*{\subsection}{0pt}{2pt}{0pt}
+
+% 定义紧凑的公式样式
+\newcommand{\dstyle}{\displaystyle}
+
+% 减少数学符号周围的空格
+\thickmuskip=2mu plus 1mu minus 1mu
+\medmuskip=1mu plus 0.5mu minus 0.5mu
+\thinmuskip=0.5mu plus 0.25mu minus 0.25mu
+
+% 允许数学在运算符处断行，避免过度拥挤
+\binoppenalty=700
+\relpenalty=500
+\mathsurround=0pt
+
+% 奇偶算子记号
+\newcommand{\Ev}{\operatorname{Ev}}
+\newcommand{\Od}{\operatorname{Od}}
+
+% 栏间距更紧凑、移除多栏额外上下间距
+\setlength{\columnsep}{6pt}
+\setlength{\multicolsep}{0pt}
+\raggedbottom
+
+\begin{document}
+\textbf{\textsf{CTFS:}} $\boldsymbol{a_{k}=\tfrac{1}{\mathcal{T}}\!\int_{\mathcal{T}}\!x(t)e^{-jk\omega_0 t}dt}$; $\boldsymbol{x(t)=\sum_{k}a_k e^{jk\omega_0 t}}$.
+\textbf{\textsf{DTFS:}} $\boldsymbol{a_k=\tfrac{1}{N}\sum_{n=\langle N\rangle}x[n]e^{-jk\tfrac{2\pi}{N}n}}$; $\boldsymbol{x[n]=\sum_{k}a_k e^{jk\tfrac{2\pi}{N}n}}$.
+$\text{sinc}(x)=\tfrac{\sin(\pi x)}{\pi x}$.
+\textbf{\textsf{CTFT:}} $\boldsymbol{X(j\omega)=\int_{-\infty}^{\infty}x(t)e^{-j\omega t}dt}$; $\boldsymbol{x(t)=\tfrac{1}{2\pi}\int_{-\infty}^{\infty}X(j\omega)e^{j\omega t}d\omega}$.
+设 $x(t) \leftrightarrow X(j\omega)$, $y(t) \leftrightarrow Y(j\omega)$。 相乘(时域): $x(t)y(t) \leftrightarrow \frac{1}{2\pi}\!\int_{-\infty}^{\infty}\!X(j\theta)Y(j(\omega-\theta))d\theta$; 时域微分: $\frac{d}{dt}x(t) \leftrightarrow j\omega X(j\omega)$; 积分: $\int_{-\infty}^{t}x(\tau)d\tau \leftrightarrow \frac{1}{j\omega}X(j\omega)+\pi X(0)\delta(\omega)$; 频域微分: $t x(t) \leftrightarrow j\frac{d}{d\omega}X(j\omega)$; 实信号对称: $x(t)$ 实 $\Rightarrow X(j\omega)=X^*(-j\omega)$ (实部偶、虚部奇); 实偶/奇: 偶$\leftrightarrow$实偶; 奇$\leftrightarrow$纯虚奇; 奇偶分解: $x_{\mathrm{e}}(t)=\Ev\{x(t)\} \leftrightarrow \Re\{X(j\omega)\}$, $x_{\mathrm{o}}(t)=\Od\{x(t)\} \leftrightarrow j\Im\{X(j\omega)\}$; 帕斯瓦尔: $\int_{-\infty}^{\infty}|x(t)|^2 dt = \frac{1}{2\pi}\int_{-\infty}^{\infty}|X(j\omega)|^2 d\omega$.
+$e^{j\omega_0 t} \leftrightarrow 2\pi\delta(\omega-\omega_0)$; $\cos(\omega_0 t) \leftrightarrow \pi[\delta(\omega-\omega_0)+\delta(\omega+\omega_0)]$; $\sin(\omega_0 t) \leftrightarrow \tfrac{\pi}{j}[\delta(\omega-\omega_0)-\delta(\omega+\omega_0)]$; $1 \leftrightarrow 2\pi\delta(\omega)$; $\sum_{k}\delta(t-kT) \leftrightarrow \tfrac{2\pi}{T}\sum_{k}\delta(\omega-\tfrac{2\pi k}{T})$; $\delta(t) \leftrightarrow 1$; $\delta(t-t_0) \leftrightarrow e^{-j\omega t_0}$; $u(t) \leftrightarrow \tfrac{1}{j\omega}+\pi\delta(\omega)$; $e^{-at}u(t) (\Re\,a>0) \leftrightarrow \tfrac{1}{a+j\omega}$; $t e^{-at}u(t) (\Re\,a>0) \leftrightarrow \tfrac{1}{(a+j\omega)^2}$; $t^{n-1} e^{-at}u(t) (\Re\,a>0) \leftrightarrow \tfrac{(n-1)!}{(a+j\omega)^n}$; 理想低通核: $\dfrac{\sin(\omega_c t)}{\pi t} \leftrightarrow \text{Rect}_{\omega_c}(\omega)$; 矩形脉冲: $x(t)=1\ (|t|<T_1) \leftrightarrow 2T_1\,\operatorname{sinc}\!\left(\dfrac{\omega T_1}{\pi}\right)$; 周期方波: $x(t)=x(t+T),\ |t|\le T_1 \leftrightarrow \tfrac{2\omega_0 T_1}{T} \sum_{k} \operatorname{sinc}\!\left(\tfrac{k\omega_0 T_1}{\pi}\right) \delta(\omega-k\omega_0)$.
+\textbf{\textsf{DTFT:}} $\boldsymbol{X(e^{j\omega})=\sum_{n}x[n]e^{-j\omega n}}$; $\boldsymbol{x[n]=\tfrac{1}{2\pi}\int_{2\pi}X(e^{j\omega})e^{j\omega n}d\omega}$.
+设 $x[n] \leftrightarrow X(e^{j\omega})$, $y[n] \leftrightarrow Y(e^{j\omega})$。 时域扩展: $x_{(k)}[n] \leftrightarrow X(e^{jk\omega})$ ($n$非$k$倍数为0); 卷积: $x[n]*y[n] \leftrightarrow X(e^{j\omega})Y(e^{j\omega})$; 相乘: $x[n]y[n] \leftrightarrow \tfrac{1}{2\pi}\!\int_{2\pi}\!X(e^{j\theta})Y(e^{j(\omega-\theta)})d\theta$; 差分: $x[n]-x[n-1] \leftrightarrow (1-e^{-j\omega})X(e^{j\omega})$; 频域微分: $n x[n] \leftrightarrow j\,\tfrac{d}{d\omega}X(e^{j\omega})$; 实信号对称: $X(e^{j\omega})=X^*(e^{-j\omega})$; 实偶/奇: 偶$\leftrightarrow$实偶, 奇$\leftrightarrow$纯虚奇; 奇偶分解: $x_{\mathrm{e}}[n] \leftrightarrow \Re\{X(e^{j\omega})\}$, $x_{\mathrm{o}}[n] \leftrightarrow j\Im\{X(e^{j\omega})\}$; 帕斯瓦尔: $\sum|x[n]|^2=\tfrac{1}{2\pi}\int_{2\pi}|X(e^{j\omega})|^2 d\omega$.
+$\sum_{k}\delta[n-kN] \leftrightarrow \tfrac{2\pi}{N}\sum_{r}\delta(\omega-\tfrac{2\pi r}{N})$; $e^{j\omega_0 n} \leftrightarrow 2\pi\sum_{k}\delta(\omega-\omega_0-2\pi k)$; $\cos(\omega_0 n) \leftrightarrow \pi\sum_{k}[\delta(\omega-\omega_0-2\pi k)+\delta(\omega+\omega_0-2\pi k)]$; $\sin(\omega_0 n) \leftrightarrow \tfrac{\pi}{j}\sum_{k}[\delta(\omega-\omega_0-2\pi k)-\delta(\omega+\omega_0-2\pi k)]$; $a^n u[n], |a|<1 \leftrightarrow \tfrac{1}{1-a e^{-j\omega}}$; 矩形脉冲: $x[n]=1 (|n|\le N_1) \leftrightarrow \tfrac{\sin[\omega (N_1 + 1/2)]}{\sin(\omega/2)}$; 低通: $\text{Rect}_W(\omega) \leftrightarrow \tfrac{\sin(Wn)}{\pi n}$; $\delta[n] \leftrightarrow 1$; $u[n] \leftrightarrow \tfrac{1}{1-e^{-j\omega}}+\pi\sum_{k}\delta(\omega-2\pi k)$; $\delta[n-n_0] \leftrightarrow e^{-j\omega n_0}$; $(n+1)a^n u[n] \leftrightarrow \tfrac{1}{(1-a e^{-j\omega})^2}$; $\tfrac{(n+r-1)!}{n!(r-1)!}a^n u[n] \leftrightarrow \tfrac{1}{(1-a e^{-j\omega})^r}$.
+\textbf{\textsf{Laplace双边:}} $\boldsymbol{X(s)=\int_{-\infty}^{+\infty}x(t)e^{-st}dt}$; $\boldsymbol{x(t)=\tfrac{1}{2\pi j}\int_{\sigma-j\infty}^{\sigma+j\infty}X(s)e^{st}ds}$.
+线性: $aX_1(s)+bX_2(s)$ (ROC$\supseteq R_1\cap R_2$); 时移: $x(t-t_0) \leftrightarrow e^{-st_0}X(s)$; $s$平移: $e^{s_0 t}x(t) \leftrightarrow X(s-s_0)$; 尺度: $x(at) \leftrightarrow \tfrac{1}{|a|}X(\tfrac{s}{a})$; 共轭: $x^*(t) \leftrightarrow X^*(s^*)$; 卷积: $x_1*x_2 \leftrightarrow X_1(s)X_2(s)$; 时域微分: $x'(t) \leftrightarrow sX(s)-x(0^-)$; $s$域微分: $-t x(t) \leftrightarrow \tfrac{d}{ds}X(s)$; 积分: $\int_{-\infty}^{t}x(\tau)d\tau \leftrightarrow \tfrac{1}{s}X(s)$ (需 $\Re(s)>0$); 初/终值: $x(0^+)=\lim_{s\to\infty}sX(s)$, $\lim_{t\to\infty}x(t)=\lim_{s\to 0}sX(s)$.
+右边信号(常见ROC: $\Re\{s\}>$极点): $\delta(t) \leftrightarrow 1$; $u(t) \leftrightarrow \tfrac{1}{s}$; $-u(-t) \leftrightarrow \tfrac{1}{s}$ ($\Re\{s\}<0$); $e^{-at}u(t) \leftrightarrow \tfrac{1}{s+a}$; $t e^{-at}u(t) \leftrightarrow \tfrac{1}{(s+a)^2}$; $\tfrac{t^{n-1}}{(n-1)!}u(t) \leftrightarrow \tfrac{1}{s^n}$; $\tfrac{t^{n-1}}{(n-1)!}e^{-at}u(t) \leftrightarrow \tfrac{1}{(s+a)^n}$; $[\cos\omega_0 t]u(t) \leftrightarrow \tfrac{s}{s^2+\omega_0^2}$; $[\sin\omega_0 t]u(t) \leftrightarrow \tfrac{\omega_0}{s^2+\omega_0^2}$.
+因果: ROC为右侧半平面; 反因果: ROC为左侧半平面; 稳定: ROC包含虚轴($\Re\{s\}=0$).
+\textbf{\textsf{Laplace单边:}} 假设 $t<0$ 时 $x(t)=0$。
+线性/平移/尺度/卷积: 与双边类似; 时域微分: $x'(t) \leftrightarrow sX(s)-x(0^-)$; $s$域微分: $-t x(t) \leftrightarrow X'(s)$; 初值: $x(0^+)=\lim_{s\to\infty}sX(s)$; 终值: $\lim_{t\to\infty}x(t)=\lim_{s\to 0}sX(s)$.
+\textbf{\textsf{Z变换双边:}} $\boldsymbol{X(z)=\sum_{n}x[n]z^{-n}}$; $\boldsymbol{x[n]=\tfrac{1}{2\pi j}\oint_C X(z)z^{n-1}dz}$.
+设 $x[n] \leftrightarrow X(z)$。 线性: $aX_1(z)+bX_2(z)$; 时移: $x[n-n_0] \leftrightarrow z^{-n_0}X(z)$; 尺度: $a^n x[n] \leftrightarrow X(a^{-1}z)$; 反转: $x[-n] \leftrightarrow X(z^{-1})$; 扩展: $x_{(k)}[n] \leftrightarrow X(z^k)$; 共轭: $x^*[n] \leftrightarrow X^*(z^*)$; 卷积: $x_1*x_2 \leftrightarrow X_1(z)X_2(z)$; 一次差分: $x[n]-x[n-1] \leftrightarrow (1-z^{-1})X(z)$; 累加: $\sum_{k=-\infty}^{n}x[k] \leftrightarrow \tfrac{1}{1-z^{-1}}X(z)$; $z$域微分: $n x[n] \leftrightarrow -z\tfrac{d}{dz}X(z)$; 初值(因果): $x[0]=\lim_{z\to\infty}X(z)$.
+格式: 信号$\leftrightarrow$变换, ROC。 $\delta[n] \leftrightarrow 1$ (All $z$); $u[n] \leftrightarrow \tfrac{1}{1-z^{-1}}$ ($|z|>1$); $-u[-n-1] \leftrightarrow \tfrac{1}{1-z^{-1}}$ ($|z|<1$); $\delta[n-m] \leftrightarrow z^{-m}$ ($z\neq 0,\infty$); $a^n u[n] \leftrightarrow \tfrac{1}{1-a z^{-1}}$ ($|z|>|a|$); $-a^n u[-n-1] \leftrightarrow \tfrac{1}{1-a z^{-1}}$ ($|z|<|a|$); $n a^n u[n] \leftrightarrow \tfrac{a z^{-1}}{(1-a z^{-1})^2}$ ($|z|>|a|$); $-n a^n u[-n-1] \leftrightarrow \tfrac{a z^{-1}}{(1-a z^{-1})^2}$ ($|z|<|a|$); $[\cos\omega_0 n]u[n] \leftrightarrow \tfrac{1-(\cos\omega_0)z^{-1}}{1-(2\cos\omega_0)z^{-1}+z^{-2}}$ ($|z|>1$); $[\sin\omega_0 n]u[n] \leftrightarrow \tfrac{(\sin\omega_0)z^{-1}}{1-(2\cos\omega_0)z^{-1}+z^{-2}}$ ($|z|>1$).
+\textbf{\textsf{Z变换单边:}} 假设 $n<0$ 时 $x[n]=0$。
+右移: $x[n-1] \leftrightarrow z^{-1}X(z)+x[-1]$; 左移: $x[n+1] \leftrightarrow zX(z)-zx[0]$; 一次差分: $x[n]-x[n-1] \leftrightarrow (1-z^{-1})X(z)-x[-1]$.
+\end{document}
